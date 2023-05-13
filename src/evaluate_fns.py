@@ -12,6 +12,7 @@ This will be stated in a comment beside the function.
 
 # util 
 import numpy as np
+import pathlib
 
 # plotting
 import matplotlib.pyplot as plt
@@ -20,7 +21,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import classification_report
 
 # functions
-def save_model_card(model, n_epochs:int, savepath:str, filename): # adapted from prev. assignment
+def save_model_card(model, n_epochs:int, savepath:pathlib.Path(), filename:str): # adapted from prev. assignment in "Language Analytics"
     '''
     Save model card (summary of layers, trainable parameters) as txt file in desired directory (savepath).
 
@@ -41,7 +42,7 @@ def save_model_card(model, n_epochs:int, savepath:str, filename): # adapted from
     with open(filepath,'w') as file:
         model.summary(print_fn=lambda x: file.write(x + '\n'))
 
-def plot_model_history(model_hist, epochs, savepath, filename): # adapted from class notebook
+def plot_model_history(model_hist, epochs:int, savepath:pathlib.Path(), filename:str): # adapted from class notebook
     '''
     Plots two subplots, one for training and validation loss and the other for training and validation accuracy.
     Saves to .png file
@@ -76,8 +77,8 @@ def plot_model_history(model_hist, epochs, savepath, filename): # adapted from c
 
     # create a plot of train and validation accuracy, defined as two subplots on top of each other ! (but beside the loss plot)
     plt.subplot(1,2,2) #nrows, ncols, #index = position
-    plt.plot(np.arange(0, epochs), model_hist.history["accuracy"], label="train_acc")
-    plt.plot(np.arange(0, epochs), model_hist.history["val_accuracy"], label="val_acc", linestyle=":")
+    plt.plot(np.arange(1, epochs+1), model_hist.history["accuracy"], label="train_acc")
+    plt.plot(np.arange(1, epochs+1), model_hist.history["val_accuracy"], label="val_acc", linestyle=":")
 
     # text description on plot !! 
     plt.title("Accuracy curve")
@@ -116,7 +117,7 @@ def get_model_metrics(model, test_data):
 
     return model_metrics
 
-def save_model_metrics(model_metrics, savepath, filename): # adapted from prev. assignment
+def save_model_metrics(model_metrics, savepath:pathlib.Path(), filename:str): # adapted from prev. assignment "Language Analytics"
     '''
     Converts scikit-learn's classification report (metrics.classification_report) to a .txt file. 
 

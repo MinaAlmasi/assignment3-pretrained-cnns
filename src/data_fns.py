@@ -56,7 +56,7 @@ def load_metadata(metadatapath:pathlib.Path()):
 
     return metadata
 
-def load_tf_data(metadata_train, metadata_test, metadata_val, imagepath_col, label_col, image_size:tuple, batch_size:int):
+def load_tf_data(metadata_train, metadata_test, metadata_val, imagepath_col:str, label_col:str, image_size:tuple, batch_size:int):
     '''
     Loads and preprocesses training, test and validation data using Tensorflow's ImageDataGenerator and its method .flow_from_dataframe(). 
 

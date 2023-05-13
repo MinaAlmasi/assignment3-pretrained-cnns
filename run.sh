@@ -3,7 +3,7 @@ source ./env/bin/activate
 
 # run classification
 echo -e "[INFO:] Running classification pipeline ..."
-python src/classify_CNN.py
+python3 src/classify_CNN.py -epochs 1
 
 # deactivate env 
 deactivate
