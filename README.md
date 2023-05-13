@@ -117,3 +117,6 @@ This repository was created by Mina Almasi:
 * github user: @MinaAlmasi
 * student no: 202005465, AUID: au675000
 * mail: mina.almasi@post.au.dk
+
+## References
+Rajput, P. S., & Aneja, S. (2021). IndoFashion: Apparel Classification for Indian Ethnic Clothes (arXiv:2104.02830). arXiv. https://doi.org/10.48550/arXiv.2104.02830
