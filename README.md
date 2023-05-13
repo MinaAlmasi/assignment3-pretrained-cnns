@@ -41,12 +41,10 @@ Python's [venv](https://docs.python.org/3/library/venv.html) needs to be install
 ### Setup
 First, please download the [*Indo Fashion Kaggle dataset*](https://www.kaggle.com/datasets/validmodel/indo-fashion-dataset) and place all files in the ```images``` folder. Ensure that the data follows the structure and naming conventions described in [images/README.md](https://github.com/MinaAlmasi/assignment3-pretrained-cnns/tree/master/images).
 
-Then, run the ```setup.sh``` in the terminal:
+Secondly, create a virtual environment (```env```) and install necessary requirements by running: 
 ```
 bash setup.sh
 ```
-
-Running ```setup.sh``` will create a virtual environment (```env```) and install the neccesary packages within it. 
 
 ### Running the Classification
 To train and evaluate a classifier using```VGG16``` on the entire dataset for ```5``` epochs, run: 
