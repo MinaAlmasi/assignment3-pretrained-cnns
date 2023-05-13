@@ -1,4 +1,6 @@
 # Using Pretrained CNNs for Image Classification
+Repository link: https://github.com/MinaAlmasi/assignment3-pretrained-cnns
+
 This repository forms *assignment 3* by Mina Almasi (202005465) in the subject Visual Analytics, Cultural Data Science, F2023. The assignment description can be found [here](https://github.com/MinaAlmasi/assignment3-pretrained-cnns/blob/master/assignment-desc.md).
 
 The repository contains code for training and evaluating a classifier using the pretrained CNN ```VGG16``` to supply image embeddings for the images. Please see the [*Results*](https://github.com/MinaAlmasi/assignment3-pretrained-cnns/blob/master/README.md#results) section for loss curves and evaluation metrics. 
