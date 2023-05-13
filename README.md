@@ -1,10 +1,13 @@
 # Using Pretrained CNNs for Image Classification
-This repository forms *assignment 3* Mina Almasi (202005465) in the subject Visual Analytics, Cultural Data Science, F2023. The assignment description can be found [here](https://github.com/AU-CDS/assignment3-pretrained-cnns-MinaAlmasi/blob/main/assignment-desc.md).
+This repository forms *assignment 3* by Mina Almasi (202005465) in the subject Visual Analytics, Cultural Data Science, F2023. The assignment description can be found [here](https://github.com/MinaAlmasi/assignment3-pretrained-cnns/blob/master/assignment-desc.md).
 
-The repository contains code for training the pretrained CNN ```VGG16``` to perform classification on the [*Indo Fashion Kaggle dataset*](https://www.kaggle.com/datasets/validmodel/indo-fashion-dataset). Please see the [*Results*](https://github.com/AU-CDS/assignment3-pretrained-cnns-MinaAlmasi#results) section for loss curves and evaluation metrics. 
+The repository contains code for training and evaluating a classifier using the pretrained CNN ```VGG16``` to supply image embeddings for the images. Please see the [*Results*](https://github.com/MinaAlmasi/assignment3-pretrained-cnns/blob/master/README.md#results) section for loss curves and evaluation metrics. 
+
+## Data
+The classification will be performed on the [*Indo Fashion dataset*](https://www.kaggle.com/datasets/validmodel/indo-fashion-dataset) (Rajput & Aneja, 2021). The dataset contains 106,000 images of Indian clothing seperated into 15 unique categories (examples include ```lehenga``` and ```palazzo```).
 
 ## Reproducibility
-To reproduce the results, follow the instructions in the [*Pipeline*](https://github.com/AU-CDS/assignment3-pretrained-cnns-MinaAlmasi#pipeline) section. The results display a model training on all the data, but instructions on how to run it on a subset of the data are also described. 
+To reproduce the results, follow the instructions in the [*Pipeline*](https://github.com/MinaAlmasi/assignment3-pretrained-cnns#pipeline) section. The results display a model training on all the data, but instructions on how to run it on a subset of the data are also described. 
 
 NB! The classification pipeline is computationally heavy. For this reason, cloud computing (e.g., UCloud) is encouraged.
 
@@ -30,10 +33,11 @@ The repository is structured as such:
 ```
 
 ## Pipeline
-This pipeline was built on Ubuntu ([UCloud](https://cloud.sdu.dk/)). 
+The pipeline has been tested on Ubuntu v22.10, Python v3.10.7 ([UCloud](https://cloud.sdu.dk/), Coder Python 1.77.3). 
+Python's [venv](https://docs.python.org/3/library/venv.html) needs to be installed for the pipeline to work.
 
 ### Setup
-First, please download the [*Indo Fashion Kaggle dataset*](https://www.kaggle.com/datasets/validmodel/indo-fashion-dataset) and place all files in the ```images``` folder. Ensure that the data follows the structure and naming conventions described in [images/README.md](https://github.com/AU-CDS/assignment3-pretrained-cnns-MinaAlmasi/tree/main/images).
+First, please download the [*Indo Fashion Kaggle dataset*](https://www.kaggle.com/datasets/validmodel/indo-fashion-dataset) and place all files in the ```images``` folder. Ensure that the data follows the structure and naming conventions described in [images/README.md](https://github.com/MinaAlmasi/assignment3-pretrained-cnns/tree/master/images).
 
 Then, run the ```setup.sh``` in the terminal:
 ```
@@ -49,7 +53,12 @@ bash run.sh
 ```
 
 ### Classification on a Subset of the Dataset
-To run the classification pipeline on a **subset** of the dataset run ```classify_CNN.py``` with the additional arguments: 
+To run the classification pipeline on a **subset** of the dataset run ```classify_CNN.py``` with the additional arguments:
+```
+python src/classify_CNN.py -n_train 25000 -n_testval 5000 -epochs 5 
+```
+
+
 
 | Arg          | Description                         | Default       |
 | :---         |:---                                 |:---           |
@@ -58,26 +67,17 @@ To run the classification pipeline on a **subset** of the dataset run ```classif
 | ```-epochs```    | the amount of epochs that the model should run for  | 5          |
 
 
-For instance:
-```
-# activate env
-source ./env/bin/activate
+In the example above, the model will train on a subset of ```25000``` datapoints for ```5``` epochs with a both a test and validation set of ```5000``` datapoints.
 
-# run script 
-python src/classify_CNN.py -n_train 25000 -n_testval 5000 -epochs 5 
-
-# deactivate env
-deactivate
-```
-In the case above, the model will train on a subset of ```25000``` datapoints for ```5``` epochs with a both a test and validation set of ```5000``` datapoints.
+NB! Remember to activate the ```env``` first (by running ```source ./env/bin/activate```)
 
 
 ## Results 
-The sections below show the results from both model training and model evaluation. The model was trained for ```5``` epochs on the entire dataset. Model specifications can be found in [results/model_card.txt](https://github.com/AU-CDS/assignment3-pretrained-cnns-MinaAlmasi/blob/main/results/model_card.txt). 
+The sections below show the results from both model training and model evaluation. The model was trained for ```5``` epochs on the entire dataset. Model specifications can be found in [results/model_card.txt](https://github.com/MinaAlmasi/assignment3-pretrained-cnns/blob/master/results/model_card.txt). 
 
 ### Loss and Accuracy Curves 
 <p align="left">
-  <img src="https://github.com/AU-CDS/assignment3-pretrained-cnns-MinaAlmasi/blob/main/results/history_5_epochs.png">
+  <img src="https://github.com/MinaAlmasi/assignment3-pretrained-cnns/blob/master/results/history_5_epochs.png">
 </p>
 
 The loss curves for validation and training loss follow each other in the first four epochs before validation loss begins to rise in the fifth epoch. This is also reflected in the accuracy curves with the validation accuracy decreasing in the last epoch. This indicates that the model is underfitting to the validation data.
@@ -106,10 +106,10 @@ leggings_and_salwars       0.65      0.83      0.73       500
            macro avg       0.82      0.80      0.80      7500
         weighted avg       0.82      0.80      0.80      7500
 ```
-The overall ```F1``` is ```0.80``` for the model, but there are definitely individual variations amongst classes. The model is especially bad at classifying ```gowns``` (```F1 = 0.57```) and ```women_kurta``` (```F1 = 0.69```) while being super good at the category ```blouse``` (```F1 = 0.95```). 
+The macro-averaged F1 is ```0.80``` for the model, but there are definitely individual variations in F1 score amongst classes. The model is especially bad at classifying ```gowns``` (```F1 = 0.57```) and ```women_kurta``` (```F1 = 0.69```) while being super good at the category ```blouse``` (```F1 = 0.95```). 
 
 ### Discussion on the Results
-The loss curves indicate that the model training has not been entirely sucessful, but model performance is still quite high (overall ```macro avg = 0.80```) although there are considerable differences between classes in ```F1``` scores. For future work, the model training could be redone with more complex classification layers (higher hidden layer size than the current ```64``` and/or extra layers) and perhaps for more epochs.
+The loss curves indicate that the model training has not been entirely sucessful, but model performance is still quite high (```macro avg F1 = 0.80```) although there are considerable differences between classes in ```F1``` scores. For future work, the model training could be redone with more complex classification layers (higher hidden layer size than the current ```64``` and/or extra layers) and perhaps for more epochs.
 
 ## Author 
 This repository was created by Mina Almasi:
