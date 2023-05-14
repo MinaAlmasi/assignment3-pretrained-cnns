@@ -11,7 +11,7 @@ The classification will be performed on the [*Indo Fashion dataset*](https://www
 ## Reproducibility
 To reproduce the results, follow the instructions in the [*Pipeline*](https://github.com/MinaAlmasi/assignment3-pretrained-cnns#pipeline) section. The results display a model training on all the data, but instructions on how to run it on a subset of the data are also described. 
 
-NB! The classification pipeline is computationally heavy. For this reason, cloud computing (e.g., UCloud) is encouraged.
+NB! The classification pipeline is computationally heavy. For this reason, cloud computing (e.g., [UCloud](https://cloud.sdu.dk/)) is encouraged.
 
 ## Project Structure
 The repository is structured as such: 
