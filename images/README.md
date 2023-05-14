@@ -1,4 +1,4 @@
-Place your dataset of *Indo fashion* [Kaggle dataset](https://www.kaggle.com/datasets/validmodel/indo-fashion-dataset) dataset in this folder ! 
+Place your *Indo fashion* [Kaggle dataset](https://www.kaggle.com/datasets/validmodel/indo-fashion-dataset) dataset in this folder ! 
 
 The data should be structured with subdirectories as such: 
 ```
